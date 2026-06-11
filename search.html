@@ -45,7 +45,7 @@ var inp=document.getElementById('q'),out=document.getElementById('res');
 function paint(){var q=inp.value.toLowerCase();
 var hits=all.filter(function(p){return !q||p.summary.toLowerCase().indexOf(q)>=0||p.handle.toLowerCase().indexOf(q)>=0||p.tags.join(' ').indexOf(q)>=0}).slice(0,100);
 var fdate=function(s){return new Date(s).toLocaleDateString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric'})};
-out.innerHTML=hits.map(function(p){return '<div class="r"><span class="n">'+p.relevance+'</span><span><a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.summary)+'</a> <span class="sub">— @'+esc(p.handle)+' · '+fdate(p.created_at)+'</span></span></div>'}).join('')||'<p class="sub">No matches.</p>';
+out.innerHTML=hits.map(function(p){return '<div class="r"><span class="n">'+p.relevance+'</span><span><a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.summary)+'</a> <span class="sub">— <a href="https://x.com/'+esc(p.handle)+'" target="_blank" rel="noopener">@'+esc(p.handle)+'</a> · '+fdate(p.created_at)+'</span></span></div>'}).join('')||'<p class="sub">No matches.</p>';
 document.getElementById('count').textContent=hits.length+' of '+all.length+' posts'}
 inp.oninput=paint;paint()}
 run();
