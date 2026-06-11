@@ -1,16 +1,19 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2026-02-24 · AI X-feed</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2026-02-24 · AI X-feed</title><script>(function(){try{var t=localStorage.getItem('aixtheme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script><style>
 :root{--bg:#fff;--fg:#1c1c1a;--muted:#6b6b66;--line:#e4e2dc;--card:#fff;--badge-bg:#FAECE7;--badge-fg:#993C1D;--pill:#f1efe8;--pill-fg:#44443f}
-@media (prefers-color-scheme:dark){:root{--bg:#151513;--fg:#e8e8e4;--muted:#98978f;--line:#34332e;--card:#1c1c19;--badge-bg:#422317;--badge-fg:#F0997B;--pill:#262522;--pill-fg:#b5b4ac}}
+:root[data-theme=dark]{--bg:#151513;--fg:#e8e8e4;--muted:#98978f;--line:#34332e;--card:#1c1c19;--badge-bg:#422317;--badge-fg:#F0997B;--pill:#262522;--pill-fg:#b5b4ac}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#151513;--fg:#e8e8e4;--muted:#98978f;--line:#34332e;--card:#1c1c19;--badge-bg:#422317;--badge-fg:#F0997B;--pill:#262522;--pill-fg:#b5b4ac}}
 *{box-sizing:border-box}
 body{margin:0 auto;max-width:780px;padding:20px 16px 60px;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg)}
 a{color:inherit}
 .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}
 .brand{font-size:19px;font-weight:600;text-decoration:none}
 .brand small{font-weight:400;color:var(--muted);font-size:12.5px;margin-left:8px}
-nav{display:flex;gap:14px;font-size:14px}
+nav{display:flex;gap:14px;font-size:14px;align-items:center}
 nav a{color:var(--muted);text-decoration:none}
 nav a.on{color:var(--fg);font-weight:600}
+.themebtn{font:14px system-ui;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--muted);padding:2px 9px;cursor:pointer;line-height:1.5}
 h1{font-size:20px;margin:6px 0 2px}
+h2.month{font-size:15px;margin:22px 0 8px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:4px}
 .meta{color:var(--muted);font-size:13px;margin:0 0 14px}
 .pills{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
 .pills button{font:13px system-ui;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--pill-fg);cursor:pointer}
@@ -18,19 +21,25 @@ h1{font-size:20px;margin:6px 0 2px}
 .card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 10px;background:var(--card)}
 .row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
 .badge{background:var(--badge-bg);color:var(--badge-fg);font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:6px}
-.cat{background:var(--pill);color:var(--pill-fg);font-size:11.5px;padding:2px 9px;border-radius:6px}
+.cat{background:var(--pill);color:var(--pill-fg);font-size:11.5px;padding:2px 9px;border-radius:6px;white-space:nowrap}
 .card h2{font-size:15.5px;line-height:1.45;margin:0 0 6px;font-weight:600}
 .sub{color:var(--muted);font-size:12.5px}
 .sub a{color:var(--muted)}
 .list{display:grid;gap:8px;font-size:14px;margin-top:6px}
 .list .r{display:flex;gap:10px;align-items:baseline}
-.list .n{color:var(--muted);font-size:12px;min-width:16px}
+.list .n{color:var(--muted);font-size:12px;min-width:16px;text-align:right}
 .foot{margin-top:36px;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:12px}
 input[type=search]{font:14px system-ui;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--fg);width:100%;margin:0 0 14px}
-.months a{margin-right:12px}
-</style></head><body><div class="top"><a class="brand" href="../index.html">AI X-feed<small>daily signal from 35 vetted accounts</small></a><nav><a href="../index.html">Today</a><a href="../archive/index.html" class="on">Archive</a><a href="../search.html">Search</a></nav></div><h1>2026-02-24</h1><p class="meta">1 signal posts</p><div class="pills"><button data-cat="all" class="on">All</button><button data-cat="technique">Technique</button><button data-cat="tool_release">Tools</button><button data-cat="project_demo">Projects</button><button data-cat="research">Research</button><button data-cat="news">News</button><button data-cat="opinion">Opinion</button></div><div class="card" data-cat="technique"><div class="row"><span class="badge">9 / 10</span><span class="cat">technique</span></div><h2>CLIs/legacy tools as agent primitives; product strategy: make your service agentic (CLI, MCP, markdown docs, skills).</h2><p class="sub">@karpathy · 2026-02-24 · agent-design, cli, mcp, agentic-coding · <a href="https://x.com/karpathy/status/2026360908398862478" rel="noopener">original ↗</a></p></div><script>
+@media (max-width:520px){body{padding:14px 10px 44px}.brand small{display:none}nav{gap:10px;font-size:13px}.card{padding:12px 13px}.top{padding-bottom:10px;margin-bottom:14px}}
+</style></head><body><div class="top"><a class="brand" href="../index.html">AI X-feed<small>daily signal from 35 vetted accounts</small></a><nav><a href="../index.html">Today</a><a href="../archive/index.html" class="on">Archive</a><a href="../search.html">Search</a><a href="../sources.html">Sources</a><button class="themebtn" id="thbtn" aria-label="toggle theme"></button></nav></div><h1>2026-02-24</h1><p class="meta">1 signal posts</p><div class="pills"><button data-cat="all" class="on">All</button><button data-cat="technique">Technique</button><button data-cat="tool_release">Tools</button><button data-cat="project_demo">Projects</button><button data-cat="research">Research</button><button data-cat="news">News</button><button data-cat="opinion">Opinion</button></div><div class="card" data-cat="technique"><div class="row"><span class="badge">9 / 10</span><span class="cat">technique</span></div><h2>CLIs/legacy tools as agent primitives; product strategy: make your service agentic (CLI, MCP, markdown docs, skills).</h2><p class="sub">@karpathy · 2026-02-24 · agent-design, cli, mcp, agentic-coding · <a href="https://x.com/karpathy/status/2026360908398862478" rel="noopener">original ↗</a></p></div><script>
 document.querySelectorAll('.pills button').forEach(function(b){b.onclick=function(){
 document.querySelectorAll('.pills button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
 var c=b.dataset.cat;document.querySelectorAll('[data-cat]').forEach(function(e){
 if(e.tagName!=='BUTTON'){e.style.display=(c==='all'||e.dataset.cat===c)?'':'none'}})}});
-</script><p class="foot">Curated one-line summaries; every item links to the original post on X. Selected and summarized automatically from 35 hand-vetted accounts by a pipeline running on a Raspberry Pi. Updated every 4 hours.</p></body></html>
+</script><p class="foot">Curated one-line summaries; every item links to the original post on X. Selected and summarized automatically from <a href="../sources.html">35 hand-vetted accounts</a> by a pipeline running on a Raspberry Pi. Updated every 4 hours.</p><script>
+(function(){var b=document.getElementById('thbtn');if(!b)return;var K='aixtheme';
+function lab(){var t=localStorage.getItem(K);b.textContent=t==='light'?'\u2600 light':t==='dark'?'\u263E dark':'\u25D0 auto'}
+b.onclick=function(){var t=localStorage.getItem(K);var n=t==='light'?'dark':t==='dark'?null:'light';
+if(n){localStorage.setItem(K,n);document.documentElement.setAttribute('data-theme',n)}
+else{localStorage.removeItem(K);document.documentElement.removeAttribute('data-theme')}lab()};lab()})();
+</script></body></html>
