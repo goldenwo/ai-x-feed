@@ -34,9 +34,10 @@ input[type=search]{font:14px system-ui;padding:8px 12px;border:1px solid var(--l
 </style></head><body><div class="top"><a class="brand" href="index.html">AI X-feed<small>daily signal from 35 vetted accounts</small></a><nav><a href="index.html">Today</a><a href="archive/index.html">Archive</a><a href="search.html" class="on">Search</a><a href="sources.html">Sources</a><button class="themebtn" id="thbtn" aria-label="toggle theme"></button></nav></div><h1>Search</h1><p class="meta" id="count"></p><input type="search" id="q" placeholder="Search summaries, handles, tags…" autofocus><div class="list" id="res"></div><script>var ROOT="";
 var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
 async function run(){
-var man=await (await fetch(ROOT+'data/manifest.json')).json();
+var man=await (await fetch(ROOT+'data/manifest.json?b='+Date.now())).json();
+var V=encodeURIComponent(man.generated||'');
 var all=[];
-for(var i=0;i<man.months.length;i++){all=all.concat(await (await fetch(ROOT+'data/posts-'+man.months[i]+'.json')).json())}
+for(var i=0;i<man.months.length;i++){all=all.concat(await (await fetch(ROOT+'data/posts-'+man.months[i]+'.json?v='+V)).json())}
 all.sort(function(a,b){return b.created_at<a.created_at?-1:1});
 var inp=document.getElementById('q'),out=document.getElementById('res');
 function paint(){var q=inp.value.toLowerCase();
