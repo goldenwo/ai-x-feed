@@ -23,6 +23,8 @@ h2.month{font-size:15px;margin:22px 0 8px;color:var(--muted);font-weight:600;bor
 .badge{background:var(--badge-bg);color:var(--badge-fg);font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:6px}
 .cat{background:var(--pill);color:var(--pill-fg);font-size:11.5px;padding:2px 9px;border-radius:6px;white-space:nowrap}
 .card h2{font-size:15.5px;line-height:1.45;margin:0 0 6px;font-weight:600}
+.card h2 a{text-decoration:none}
+.card h2 a:hover{text-decoration:underline}
 .sub{color:var(--muted);font-size:12.5px}
 .sub a{color:var(--muted)}
 .list{display:grid;gap:8px;font-size:14px;margin-top:6px}
@@ -42,11 +44,12 @@ all.sort(function(a,b){return b.created_at<a.created_at?-1:1});
 var inp=document.getElementById('q'),out=document.getElementById('res');
 function paint(){var q=inp.value.toLowerCase();
 var hits=all.filter(function(p){return !q||p.summary.toLowerCase().indexOf(q)>=0||p.handle.toLowerCase().indexOf(q)>=0||p.tags.join(' ').indexOf(q)>=0}).slice(0,100);
-out.innerHTML=hits.map(function(p){return '<div class="r"><span class="n">'+p.relevance+'</span><span><a href="'+esc(p.url)+'">'+esc(p.summary)+'</a> <span class="sub">— @'+esc(p.handle)+' · '+p.created_at.slice(0,10)+'</span></span></div>'}).join('')||'<p class="sub">No matches.</p>';
+var fdate=function(s){return new Date(s).toLocaleDateString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric'})};
+out.innerHTML=hits.map(function(p){return '<div class="r"><span class="n">'+p.relevance+'</span><span><a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.summary)+'</a> <span class="sub">— @'+esc(p.handle)+' · '+fdate(p.created_at)+'</span></span></div>'}).join('')||'<p class="sub">No matches.</p>';
 document.getElementById('count').textContent=hits.length+' of '+all.length+' posts'}
 inp.oninput=paint;paint()}
 run();
-</script><p class="foot">Curated one-line summaries; every item links to the original post on X. Selected and summarized automatically from <a href="sources.html">35 hand-vetted accounts</a> by a pipeline running on a Raspberry Pi. Updated every 4 hours.</p><script>
+</script><p class="foot">Curated one-line summaries; every title opens the original post on X. Selected and summarized automatically from <a href="sources.html">35 hand-vetted accounts</a> by a pipeline running on a Raspberry Pi. Numbers are relevance scores (0–10) assigned by the curator model against an applied-AI rubric. Times are US Eastern. Updated every 4 hours.</p><script>
 (function(){var b=document.getElementById('thbtn');if(!b)return;var K='aixtheme';
 function lab(){var t=localStorage.getItem(K);b.textContent=t==='light'?'\u2600 light':t==='dark'?'\u263E dark':'\u25D0 auto'}
 b.onclick=function(){var t=localStorage.getItem(K);var n=t==='light'?'dark':t==='dark'?null:'light';
