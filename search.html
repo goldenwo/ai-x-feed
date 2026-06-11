@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Search · AI X-feed</title><script>(function(){try{var t=localStorage.getItem('aixtheme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Search · AI X-feed</title><meta name="description" content="Daily AI signal from 35 hand-vetted X accounts - one-line summaries, relevance-ranked against an applied-AI rubric, updated every 4 hours."><meta property="og:title" content="Search · AI X-feed"><meta property="og:description" content="Daily AI signal from 35 hand-vetted X accounts - one-line summaries, relevance-ranked against an applied-AI rubric, updated every 4 hours."><meta property="og:type" content="website"><meta property="og:site_name" content="AI X-feed"><meta name="twitter:card" content="summary"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23993C1D'/%3E%3Ctext x='32' y='45' font-size='34' font-weight='700' font-family='sans-serif' text-anchor='middle' fill='%23FAECE7'%3Eai%3C/text%3E%3C/svg%3E"><script>(function(){try{var t=localStorage.getItem('aixtheme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}})();</script><style>
 :root{--bg:#fff;--fg:#1c1c1a;--muted:#6b6b66;--line:#e4e2dc;--card:#fff;--badge-bg:#FAECE7;--badge-fg:#993C1D;--pill:#f1efe8;--pill-fg:#44443f}
 :root[data-theme=dark]{--bg:#151513;--fg:#e8e8e4;--muted:#98978f;--line:#34332e;--card:#1c1c19;--badge-bg:#422317;--badge-fg:#F0997B;--pill:#262522;--pill-fg:#b5b4ac}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#151513;--fg:#e8e8e4;--muted:#98978f;--line:#34332e;--card:#1c1c19;--badge-bg:#422317;--badge-fg:#F0997B;--pill:#262522;--pill-fg:#b5b4ac}}
@@ -38,16 +38,19 @@ var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'
 async function run(){
 var man=await (await fetch(ROOT+'data/manifest.json?b='+Date.now())).json();
 var V=encodeURIComponent(man.generated||'');
-var all=[];
-for(var i=0;i<man.months.length;i++){all=all.concat(await (await fetch(ROOT+'data/posts-'+man.months[i]+'.json?v='+V)).json())}
-all.sort(function(a,b){return b.created_at<a.created_at?-1:1});
+var all=[],loaded=0;
 var inp=document.getElementById('q'),out=document.getElementById('res');
+var fdate=function(s){return new Date(s).toLocaleDateString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric'})};
 function paint(){var q=inp.value.toLowerCase();
 var hits=all.filter(function(p){return !q||p.summary.toLowerCase().indexOf(q)>=0||p.handle.toLowerCase().indexOf(q)>=0||p.tags.join(' ').indexOf(q)>=0}).slice(0,100);
-var fdate=function(s){return new Date(s).toLocaleDateString('en-US',{timeZone:'America/New_York',year:'numeric',month:'short',day:'numeric'})};
 out.innerHTML=hits.map(function(p){return '<div class="r"><span class="n">'+p.relevance+'</span><span><a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.summary)+'</a> <span class="sub">— <a href="https://x.com/'+esc(p.handle)+'" target="_blank" rel="noopener">@'+esc(p.handle)+'</a> · '+fdate(p.created_at)+'</span></span></div>'}).join('')||'<p class="sub">No matches.</p>';
-document.getElementById('count').textContent=hits.length+' of '+all.length+' posts'}
-inp.oninput=paint;paint()}
+document.getElementById('count').textContent=hits.length+' of '+all.length+' posts'+(loaded<man.months.length?' (loading older months\u2026)':'')}
+inp.oninput=paint;
+for(var i=0;i<man.months.length;i++){
+all=all.concat(await (await fetch(ROOT+'data/posts-'+man.months[i]+'.json?v='+V)).json());
+all.sort(function(a,b){return b.created_at<a.created_at?-1:1});
+loaded++;paint()}
+}
 run();
 </script><p class="foot">Curated one-line summaries; every title opens the original post on X. Selected and summarized automatically from <a href="sources.html">35 hand-vetted accounts</a> by a pipeline running on a Raspberry Pi. Numbers are relevance scores (0–10) assigned by the curator model against an applied-AI rubric. Times are US Eastern. Updated every 4 hours.</p><script>
 (function(){var b=document.getElementById('thbtn');if(!b)return;var K='aixtheme';
